@@ -1,0 +1,38 @@
+---
+
+port: 80
+
+# Domain name
+server_name: example.com
+
+# Leave blank to skip aliases
+server_alias: www.example.com
+
+# Where you files are stored
+document_root: /var/www/vhosts/{{ server_name }}
+document_owner: www-data
+document_group: www-data
+
+# SSL certificate information
+ssl_crt: 2015.example.com.crt
+ssl_key: 2015.example.com.key
+ssl_ca_chain: 2015.example.com.ca.crt
+
+# Passenger details
+PASSENGER: false
+passenger_root: /home/rails/.rvm/gems/ruby-2.1.5
+passenger_version: gems/passenger-5.0.6
+passenger_module: {{ passenger_root }}/{{ passenger_version }}/buildout/apache2/mod_passenger.so
+passenger_default: {{ passenger_root }}/wrappers/ruby
+rails_env: development
+passenger_max_pool_size: 20
+passenger_min_instances: 18
+passenger_pool_idle_time: 10
+passenger_max_requests: 120
+passenger_max_request_queue_size: 200
+
+
+# Global 
+SSL: false
+SELF_SIGNED: true
+TESTING: false
