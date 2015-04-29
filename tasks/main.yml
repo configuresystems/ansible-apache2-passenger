@@ -10,6 +10,11 @@
     - install
   sudo: yes
 
+- name: stop apache2
+  service: name=apache2
+           state=stopped
+  sudo: yes
+
 - name: create self-signed ssl certificate
   raw: 'openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/{{ ssl_key }} -out /etc/ssl/certs/{{ ssl_crt }} -subj "/C=US/ST=./L=./O=./OU=./CN={{ server_name }}"'
   when: SELF_SIGNED and SSL
@@ -72,6 +77,7 @@
     - "000.{{ server_name }}.conf"
   sudo: yes
 
-- name: restart apache2
+- name: start apache2
   service: name=apache2
-           state=restarted
+           state=started
+  sudo: yes

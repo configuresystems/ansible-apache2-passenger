@@ -2,6 +2,8 @@
 
 port: 80
 
+username: rails
+
 # Domain name
 server_name: example.com
 
@@ -9,7 +11,7 @@ server_name: example.com
 server_alias: www.example.com
 
 # Where you files are stored
-document_root: /var/www/vhosts/{{ server_name }}
+document_root: "/home/{{ username }}/app"
 document_owner: www-data
 document_group: www-data
 
@@ -20,10 +22,10 @@ ssl_ca_chain: 2015.example.com.ca.crt
 
 # Passenger details
 PASSENGER: false
-passenger_root: /home/rails/.rvm/gems/ruby-2.1.5
-passenger_version: gems/passenger-5.0.6
-passenger_module: {{ passenger_root }}/{{ passenger_version }}/buildout/apache2/mod_passenger.so
-passenger_default: {{ passenger_root }}/wrappers/ruby
+passenger_root: "/home/{{ username }}/.rvm/gems/ruby-2.1.5"
+passenger_version: "gems/passenger-5.0.7"
+passenger_module: "{{ passenger_root }}/{{ passenger_version }}/buildout/apache2/mod_passenger.so"
+passenger_default: "{{ passenger_root }}/wrappers/ruby"
 rails_env: development
 passenger_max_pool_size: 20
 passenger_min_instances: 18

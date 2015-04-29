@@ -12,11 +12,11 @@
 <VirtualHost *:{{ port }}>
 
     ServerName {{ server_name }}
-    {% if server_alias %}
+{% if server_alias %}
     ServerAlias {{ server_alias }}
-    {% endif %}
+{% endif %}
 
-    {% if PASSENGER %}
+{% if PASSENGER %}
     PassengerMaxPoolSize {{ passenger_max_pool_size }}
     PassengerMinInstances {{ passenger_min_instances }}
     PassengerPoolIdleTime {{ passenger_pool_idle_time }}
@@ -30,9 +30,9 @@
     </IfModule>
 
     RailsEnv {{ rails_env }}
-    {% endif %}
+{% endif %}
 
-    {% if SSL and SELF_SIGNED %}
+{% if SSL and SELF_SIGNED %}
     # Setting SSL settings
     SSLEngine on
     # TODO: Should look into SSLv3
@@ -41,9 +41,9 @@
     # jinja2 templating variables to set names of SSL files
     SSLCertificateFile /etc/ssl/certs/{{ ssl_crt }}
     SSLCertificateKeyFile /etc/ssl/private/{{ ssl_key }}
-    {% endif %}
+{% endif %}
 
-    {% if SSL and not SELF_SIGNED %}
+{% if SSL and not SELF_SIGNED %}
     # Setting SSL settings
     SSLEngine on
     # TODO: Should look into SSLv3
@@ -53,11 +53,11 @@
     SSLCertificateFile /etc/ssl/certs/{{ ssl_crt }}
     SSLCertificateKeyFile /etc/ssl/private/{{ ssl_key }}
     SSLCertificateChainFile /etc/ssl/certs/{{ ssl_ca_chain }}
-    {% endif %}
+{% endif %}
 
-    DocumentRoot {{ document_root }}
+    DocumentRoot {{ document_root }}/public
 
-    <Directory {{ document_root }}>
+    <Directory {{ document_root }}/public>
         Require all granted
         {% if SSL %}
         SSLRequireSSL

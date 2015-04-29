@@ -1,0 +1,11 @@
+---
+
+dependencies:
+  - { role: ansible-users }
+  - { role: ansible-rvm,
+      rvm1_rubies: '{{ rubies }}',
+      rvm1_install_path: '/home/{{ username }}/.rvm',
+      rvm1_install_flags: '--auto-dotfiles --user-install',
+      sudo: yes
+      }
+  - { role: ansible-passenger }
