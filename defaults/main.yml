@@ -33,8 +33,12 @@ passenger_pool_idle_time: 10
 passenger_max_requests: 120
 passenger_max_request_queue_size: 200
 
-
 # Global 
 SSL: false
 SELF_SIGNED: true
 TESTING: false
+
+# ansible-rvm
+rubies:
+  - 'ruby-2.1.5'
+GEM: yes
